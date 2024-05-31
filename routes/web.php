@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin as Admin;
+use App\Http\Controllers\Open as Open;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +21,19 @@ Route::get('/', function () {
     return view('layouts.layoutpublic');
 })->name('home');
 
-Route::get('tasks', [\App\Http\controllers\open\TaskController::class, 'index'])->name('open.tasks.index');
+Route::get('', [\App\Http\controllers\open\TaskController::class, 'index'])->name('open.tasks.index');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::group(['middleware' => ['role:user|admin']], function(){
+    Route::get('/admin/task/{task}/delete}', [Admin\TaskController::class, 'delete'])->name('task.delete');
+    Route::resource('/admin/tasks', Admin\TaskController::class);
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
