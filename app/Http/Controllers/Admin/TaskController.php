@@ -85,7 +85,11 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $tasks= Task::all();
+        $labels = Label::all();
+        $users = User::all();
+        return view('admin.tasks.edit', ['task' => $task, 'labels' => $labels, 'users' => $users]);
+
     }
 
     /**
@@ -93,7 +97,12 @@ class TaskController extends Controller
      */
     public function update(TaskUpdateRequest $request, Task $task)
     {
-        //
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->user_id = $request->user_id;
+        $task->label_id = $request->label_id;
+        $task->save();
+        return to_route('tasks.index')->with('status', "Task $task updated successfully");
     }
 
     /**
