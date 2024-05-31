@@ -40,14 +40,15 @@
         <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">User</a>
         @endhasanyrole
     </div>
+    <h3 class="text-center text-xl text-white ">tasks</h3>
     <nav class="text-white text-base font-semibold pt-3">
-        <a href="index.html" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+        <a href="{{route('tasks.index')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
             <i class="fas fa-tachometer-alt mr-3"></i>
-            Dashboard
+            Tasks
         </a>
-        <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{route('tasks.create')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
-            example
+            Create Task
         </a>
 
 
@@ -66,7 +67,7 @@
                 <img src="https://i.pinimg.com/564x/f8/98/fb/f898fbf9d12456f5ea9e337783cdbfd3.jpg">
             </button>
             <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
-            <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
+            <div x-show="isOpen" class="absolute z-10 w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
                 <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
