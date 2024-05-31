@@ -9,6 +9,11 @@ use App\Models\Task;
 use illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Label;
+use App\Models\User;
+
+
+
 
 class TaskController extends Controller
 {
@@ -23,6 +28,8 @@ class TaskController extends Controller
         $this->middleware('permission:create task', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit task', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete task', ['only' => ['delete', 'destroy']]);
+
+
     }
 
     /**
@@ -37,10 +44,15 @@ class TaskController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @return view
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $tasks = Task::all();
+        $labels = Label::all();
+        $users = User::all();
+        return view('admin.tasks.create', ['tasks' => $tasks, 'labels' => $labels, 'users' => $users]);
+
     }
 
     /**
@@ -48,7 +60,13 @@ class TaskController extends Controller
      */
     public function store(TaskStoreRequest $request)
     {
-        //
+        $tasks = new Task();
+        $tasks->name = $request->name;
+        $tasks->description = $request->description;
+        $tasks->user_id = $request->user_id;
+        $tasks->label_id = $request->label_id;
+        $tasks->save();
+        return to_route('tasks.index')->with('status', "Task $tasks created successfully");
     }
 
     /**
