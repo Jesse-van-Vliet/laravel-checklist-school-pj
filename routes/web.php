@@ -25,7 +25,7 @@ Route::get('', [\App\Http\controllers\open\TaskController::class, 'index'])->nam
 
 
 Route::group(['middleware' => ['role:user|admin']], function(){
-    Route::get('/admin/task/{task}/delete}', [Admin\TaskController::class, 'delete'])->name('task.delete');
+    Route::get('/admin/task/{task}/delete}', [Admin\TaskController::class, 'delete'])->name('tasks.delete');
     Route::resource('/admin/tasks', Admin\TaskController::class);
 
     Route::get('/dashboard', function () {

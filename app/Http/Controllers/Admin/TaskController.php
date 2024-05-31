@@ -13,12 +13,25 @@ use Illuminate\View\View;
 class TaskController extends Controller
 {
     /**
+     * set permissions on methods
+     *
+     */
+
+    public function __construct() {
+        $this->middleware('permission:index task', ['only' => ['index']]);
+        $this->middleware('permission:show task', ['only' => ['show']]);
+        $this->middleware('permission:create task', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit task', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete task', ['only' => ['delete', 'destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index():view
     {
-
-        return view('admin.tasks.index');
+        $tasks = Task::with('user', 'label')->where('user_id', @auth()->user()->id)->get();
+        return view('admin.tasks.index', ['tasks' => $tasks]);
 
     }
 
@@ -40,10 +53,13 @@ class TaskController extends Controller
 
     /**
      * Display the specified resource.
+     * @param Task $task
+     * @return view
      */
-    public function show(Task $task)
+
+    public function show(Task $task):view
     {
-        //
+        return view('admin.tasks.show', ['task' => $task]);
     }
 
     /**
