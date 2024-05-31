@@ -18,7 +18,7 @@ class TaskController extends Controller
 
     public function index(): View
     {
-        $tasks = Task::with('user', 'label')->where('user_id', '3')
+        $tasks = Task::with('user', 'label')->where('user_id', '3' )
             ->paginate(15);
         return view('open.tasks.index', ['tasks' => $tasks]);
     }
