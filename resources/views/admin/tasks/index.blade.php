@@ -36,7 +36,9 @@
                         <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.edit', ['task' => $task->id]) }}"> edit</a></td>
                         @endcan
                        @can('delete task')
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"> delete</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
+                                        <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                    </svg> </a></td>
                            @endcan
                     </tr>
                     @endif
@@ -80,7 +82,9 @@
                                     <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.edit', ['task' => $task->id]) }}"> edit</a></td>
                                 @endcan
                                 @can('delete task')
-                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"> delete</a></td>
+                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
+                                                <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                            </svg> </a></td>
                                 @endcan
                             </tr>
                         @endif
@@ -124,7 +128,9 @@
                                     <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.edit', ['task' => $task->id]) }}"> edit</a></td>
                                 @endcan
                                 @can('delete task')
-                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"> delete</a></td>
+                                    <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="{{ route('tasks.delete', ['task' => $task->id]) }}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
+                                                <path stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                            </svg> </a></td>
                                 @endcan
                             </tr>
                         @endif

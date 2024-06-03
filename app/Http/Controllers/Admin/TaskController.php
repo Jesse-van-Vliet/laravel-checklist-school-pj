@@ -106,10 +106,28 @@ class TaskController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * show  the specified resource from storage.
+     * @param Task $task
+     * @return view
      */
-    public function destroy(Task $task)
+    public function delete(Task $task): view
     {
-        //
+        $tasks= Task::all();
+        $labels = Label::all();
+        $users = User::all();
+        return view('admin.tasks.delete', ['task' => $task, 'labels' => $labels, 'users' => $users]);
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     * @param Task $task
+     * @return RedirectResponse
+     */
+    public function destroy(Task $task): RedirectResponse
+    {
+        $task->delete();
+        return to_route('tasks.index')->with('status', "Task $task->name deleted successfully");
+    }
+
 }
