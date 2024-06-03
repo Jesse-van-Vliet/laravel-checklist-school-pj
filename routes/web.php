@@ -35,6 +35,12 @@ Route::group(['middleware' => ['role:user|admin']], function(){
 });
 
 
+Route::group(['middleware' => ['role:admin']], function(){
+    Route::get('/admin/user/{user}/delete}', [Admin\UserController::class, 'delete'])->name('users.delete');
+    Route::resource('/admin/users', Admin\UserController::class);
+
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

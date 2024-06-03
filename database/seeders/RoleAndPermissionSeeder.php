@@ -24,6 +24,12 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'edit task']);
         Permission::create(['name' => 'delete task']);
 
+        Permission::create(['name' => 'index user']);
+        Permission::create(['name' => 'show user']);
+        Permission::create(['name' => 'create user']);
+        Permission::create(['name' => 'edit user']);
+        Permission::create(['name' => 'delete user']);
+
 
         $user = Role::create(['name' => 'user'])
         ->givePermissionTo(['index task', 'show task', 'create task', 'edit task', 'delete task']);
