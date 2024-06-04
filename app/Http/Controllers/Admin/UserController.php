@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Task;
 
 class UserController extends Controller
 {
@@ -36,12 +37,16 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource.#
+     * @param User $user
+     * @return View
      */
-    public function show(User $user)
+    public function show(User $user): View
     {
-        //
+        $tasks = Task::with('user', 'label')->where('user_id', $user->id)->get();
+        return view('admin.users.show', ['user' => $user, 'tasks' => $tasks]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
