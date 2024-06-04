@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->foreignId('label_id')->constrained()->cascadeOnUpdate()->onDelete('restrict');
-            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->onDelete('restrict');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->onDelete('cascade'); // Changed to 'cascade'
             $table->timestamps();
         });
     }
