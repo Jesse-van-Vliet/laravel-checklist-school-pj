@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Task;
 
+
 class UserController extends Controller
 {
     /**
@@ -53,7 +54,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $users = User::all();
+        return view('admin.users.edit', ['user' => $user, 'users' => $users]);
     }
 
     /**
@@ -61,7 +63,24 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if(!empty($request->password) && !empty($request->password2))
+        {
+            if($request->password == $request->password2){
+                $user->password  = bcrypt($request->password);
+            }
+            else{
+
+                return redirect()->route('users.index');
+                exit();
+
+
+            }
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->route('users.index');
+
     }
 
 
@@ -84,4 +103,5 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('status', "User $user->name deleted successfully");
 
     }
+
 }
